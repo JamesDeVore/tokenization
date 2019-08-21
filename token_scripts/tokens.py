@@ -121,20 +121,18 @@ base_properties = {
 }
 
 base_macros = [
-    Macro(label='fort', group='saves', command='Fort: [d20+Fortitude]'),
-    Macro(label='ref',  group='saves', command='Reflex: [d20+Reflex]'),
-    Macro(label='will', group='saves', command='Will: [d20+Will]'),
-
+    Macro(label='Fortitude', group='saves', command='Fort: [d20+Fortitude]'),
+    Macro(label='Reflex',  group='saves', command='Reflex: [d20+Reflex]'),
+    Macro(label='Will', group='saves', command='Will: [d20+Will]'),
     Macro(label='str', group='skills', sortby='_1', command='Str: [d20+StrMod] (ACP: [ACP])'),
     Macro(label='dex', group='skills', sortby='_2', command='Dex: [d20+DexMod] (ACP: [ACP])'),
     Macro(label='con', group='skills', sortby='_3', command='Con: [d20+ConMod]'),
     Macro(label='int', group='skills', sortby='_4', command='Int: [d20+IntMod]'),
     Macro(label='wis', group='skills', sortby='_5', command='Wis: [d20+WisMod]'),
     Macro(label='cha', group='skills', sortby='_6', command='Cha: [d20+ChaMod]'),
-    Macro(label='perception', group='skills', command='Perception: [d20+Perception]'),
-    Macro(label='sense motive', group='skills', command='Sense Motive: [d20+SenseMotive]'),
-
-    Macro(label='mod HP', color='pink', sortby='0', command='''
+    Macro(label='Perception', group='skills', command='Perception: [d20+Perception]'),
+    Macro(label='Sense Motive', group='skills', command='Sense Motive: [d20+SenseMotive]'),
+    Macro(label='Mod HP', color='pink', sortby='0', command='''
 [h: input(
 "mode|Damage,Heal,Temp HP,Nonlethal|Choose|RADIO|ORIENT=H",
 "Amt|0|Amount|TEXT"
@@ -161,7 +159,7 @@ properties_xml = '''<map>
 
 with open('templates/content.xml') as f:
     content_template = jinja2.Template(f.read())
-
+#add a macro argument to the token
 class Token(object):
     def __init__(self, image, portrait_image=None, size='Medium',
                  states=None, properties=None, macros=None,
@@ -199,6 +197,8 @@ class Token(object):
                 self.properties[name] = val
 
         self.macros = []
+        ## here is where I can add additional macros before the template finishes
+        #use the base_macros as an example
         if default_macros:
             self.macros.extend(base_macros)
         if macros:

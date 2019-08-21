@@ -1,5 +1,7 @@
-import tokens
+import sys
 import requests
+sys.path.append('/token_scripts')
+from token_scripts import tokens
 
 r = requests.get('http://vignette3.wikia.nocookie.net/forgottenrealms'
                  '/images/3/36/Monster_Manual_5e_-_Ogre_-_p237.jpg')
@@ -8,7 +10,7 @@ r = requests.get('http://vignette3.wikia.nocookie.net/forgottenrealms'
 other = requests.get(
     'https://vxe45sf1th.execute-api.us-east-1.amazonaws.com/1/main?name=ogre')
 body = other.json();
-print(len(body))
+
 image = tokens.Asset('ogre', 'jpg', r.content)
 t = tokens.Token(image=image, name='Ogre', size='Large',
                  properties={
