@@ -6,7 +6,7 @@ class TokenPath():
 
   def __init__(self,master):
     self.PathFrame = Frame(
-        master, highlightbackground='black', highlightthickness=2,bd=5)
+        master, highlightbackground='black')
     self.PathFrame.grid(row=3,column=0 ,columnspan=3,sticky='W')
     self.title = Label(self.PathFrame, text="Token Details", font=('Courier', 18))
     self.title.grid(row=0, column=0)

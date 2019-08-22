@@ -5,8 +5,7 @@ from search import SearchForMonsters
 class MonsterSelection():
   def __init__(self, master):
     self.results = []
-    monsterFrame = Frame(master, bd=5, width=200,
-                         highlightbackground='black', highlightthickness=2)
+    monsterFrame = Frame(master, bd=5, width=200)
     monsterFrame.grid(row=2, rowspan=3, column=0, sticky='NW')
 
     self.SearchTitle = Label(monsterFrame, text="What Monster do you want?")

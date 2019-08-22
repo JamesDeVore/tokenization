@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import ttk
+
 from search import SearchForMonsters
 
 class MonsterDisplay():
@@ -6,8 +8,8 @@ class MonsterDisplay():
     self.title = Label(master, text="Monster Details", font=('Courier',18))
     self.title.grid(row=1, column=1)
 
-    self.MonsterDisplay = Frame(
-        master, highlightbackground='black', highlightthickness=2)
+    self.MonsterDisplay = Frame(master)
+
     self.MonsterDisplay.grid(row=2, column=1)
     self.MonsterName = Label(self.MonsterDisplay, text="Name of Monster")
     self.MonsterName.grid(row=0, column=0,)
@@ -16,12 +18,8 @@ class MonsterDisplay():
 
     self.MonsterDesc = Text(self.MonsterDisplay, height=10, width=60)
     self.MonsterDesc.grid(row=1, column=0,columnspan=4)
-    # self.DescScroll = Scrollbar(self.MonsterDisplay,orient='vertical',command=self.MonsterDesc.yview)
-    # self.DescScroll.grid(row=1,column=2, sticky='E')
-    # self.MonsterDesc['yscrollcommand'] = self.DescScroll.set
 
-    self.MonsterStats = Frame(
-        self.MonsterDisplay, highlightbackground='black', highlightthickness=2)
+    self.MonsterStats = Frame(self.MonsterDisplay)
     self.MonsterStats.grid(row=2, column=0,sticky='S',columnspan=4)
 
     self.StrLabel = Label(self.MonsterStats, text="Strength")

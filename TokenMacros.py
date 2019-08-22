@@ -6,7 +6,7 @@ macrodesc = '''
 Tokens come pre-loaded with the following macros: Fortitude save, Will Save, Reflex save, All ability checks, and modify HP. '''
 class TokenMacros():
   def __init__ (self,master):
-    self.MacroFrame = Frame(master, highlightbackground='black', highlightthickness=2, bd=5)
+    self.MacroFrame = Frame(master,padx=10,pady=10)
     self.MacroFrame.grid(row=2, column=2,columnspan=2, sticky='NE')
     self.MacroTitle = Label(master, text="Macro Details", font=('Courier', 18))
     self.MacroTitle.grid(column=2,row=1,sticky='')
