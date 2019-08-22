@@ -185,7 +185,7 @@ properties_xml = '''<map>
   </entry>
 </map>'''
 
-with open('templates/content.xml') as f:
+with open('content.xml') as f:
     content_template = jinja2.Template(f.read())
 # add a macro argument to the token
 class Token(object):

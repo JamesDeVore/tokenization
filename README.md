@@ -1,6 +1,7 @@
 # Token Maker
 
-A GUI based in tkinter that helps in the creation of MapTool tokens. Built on the token making script 
+A GUI based in tkinter that helps in the creation of MapTool tokens. Built on the token making script by: 
+https://github.com/dougalsutherland/tokenization
 
 ## How to use:
 
