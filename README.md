@@ -1,27 +1,11 @@
-Some Python utilities to make [MapTool](http://www.rptools.net/toolbox/maptool/) tokens for Pathfinder NPCs/monsters/etc.
+# Token Maker
 
-Currently pretty specific to our particular campaign properties / etc.
+A GUI based in tkinter that helps in the creation of MapTool tokens. Built on the token making script 
 
-# tokens.py
+## How to use:
 
-Interface to make MapTool token files.
+### with python shell, run main.py
+#### Or (if it works) run main.exe
 
-Example usage:
+There is a monster search feature that will automatically *try* to fill in most of the details for the token if you wish to create a monster from the bestiary (based on the paizo monster database). Otherwise, feel free to add/edit the various properties of the token. as of 8/22/19 you will NEED an image (preferably .jpg) wither via url link, or a local file. Maptool tokens require some kind of image and I haven't put in any error handling yet. Feel free to reach out with any issues or if you want to contribute and make this even better!
 
-```
-import tokens
-import requests
-
-r = requests.get('http://vignette3.wikia.nocookie.net/forgottenrealms'
-                 '/images/3/36/Monster_Manual_5e_-_Ogre_-_p237.jpg')
-image = tokens.Asset('ogre', 'jpg', r.content)
-t = tokens.Token(image=image, name='Ogre', size='Large',
-    properties={
-        'Strength': 21, 'Dexterity': 8, 'Constitution': 15,
-        'Intelligence': 6, 'Wisdom': 10, 'Charisma': 7,
-        'BAB': 3, 'MaxHP': 30,
-        'Armor': '{4+5}',
-    }
-)
-t.make_file('ogre.rptok')
-```

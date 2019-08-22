@@ -1,5 +1,7 @@
 
 import sys
+sys.path.insert(1,'/token_scripts')
+sys.path.insert(1,'/pythonScripts')
 from token_scripts import tokens
 from tkinter import *
 from search import SearchForMonsters
@@ -9,7 +11,7 @@ from MonsterDisplay import MonsterDisplay
 from TokenMacros import TokenMacros
 from TokenMaker import makeToken
 import requests
-sys.path.append('/token_scripts')
+
 from token_scripts import tokens
 #need to make the parts into different classes 
 
