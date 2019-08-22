@@ -3,7 +3,7 @@ from search import SearchForMonsters
 
 class MonsterDisplay():
   def __init__(self, master):
-    self.title = Label(master, text="Monster Details",)
+    self.title = Label(master, text="Monster Details", font=('Courier',18))
     self.title.grid(row=1, column=1)
 
     self.MonsterDisplay = Frame(
@@ -13,11 +13,6 @@ class MonsterDisplay():
     self.MonsterName.grid(row=0, column=0,)
     self.MonsterEntry = Entry(self.MonsterDisplay)
     self.MonsterEntry.grid(row=0, column=1)
-
-    self.MonsterImg = Label(self.MonsterDisplay, text="Image URL")
-    self.MonsterImg.grid(row=0, column=2, )
-    self.MonsterImgEntry = Entry(self.MonsterDisplay)
-    self.MonsterImgEntry.grid(row=0, column=3)
 
     self.MonsterDesc = Text(self.MonsterDisplay, height=10, width=60)
     self.MonsterDesc.grid(row=1, column=0,columnspan=4)
@@ -163,3 +158,26 @@ class MonsterDisplay():
     self.CMDEntry.insert(0, monsterObj['CMD'])
     self.CMBEntry.delete(0, END)
     self.CMBEntry.insert(0, monsterObj['CMB'])
+  def returnStats(self):
+    allStats = {}
+    allStats['Name'] = self.MonsterEntry.get()
+    allStats['Str'] = self.StrEntry.get()
+    allStats['Dex'] = self.DexEntry.get()
+    allStats['Con'] = self.ConEntry.get()
+    allStats['Int'] = self.IntEntry.get()
+    allStats['Wis'] = self.WisEntry.get()
+    allStats['Cha'] = self.ChaEntry.get()
+    allStats['BaB'] = self.BaBEntry.get()
+    allStats['Armor'] = self.ArmorBonusEntry.get()
+    allStats['Natural'] = self.NaturalArmorBonusEntry.get()
+    allStats['HP'] = self.HPEntry.get()
+    allStats['HD'] = self.HDEntry.get()
+    allStats['Size'] = self.SizeEntry.get()
+    allStats['AC'] = self.ACEntry.get()
+    allStats['Fort'] = self.FortEntry.get()
+    allStats['Will'] = self.WillEntry.get()
+    allStats['Ref'] = self.RefEntry.get()
+    allStats['CMD'] = self.CMDEntry.get()
+    allStats['CMB'] = self.CMBEntry.get()
+    allStats['Desc'] = self.MonsterDesc.get(1.0,END)
+    return allStats

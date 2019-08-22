@@ -120,6 +120,32 @@ base_properties = {
     'HP': '{MaxHP}',
 }
 
+atk_macro = '''
+[h:Name="%s"]
+[h:type="damage"]
+[h:dice=%s]
+[h:ndice=%s]
+[h:attack_bonus=%s]
+[h:crit_low=20]
+[h:damage_mod=StrMod + %s]
+[h:crit_mult=2]
+[h:damage_dice=roll(ndice,dice)]
+[h:crit_dice=roll(ndice,dice)]
+[h:attack_stat=StrMod]
+[h:roll=1d20]
+[h:crit_damage=reroll(crit_mult-1, dice+damage_mod, 1+damage_mod)]
+[Name]: [roll+attack_stat+BAB-SizeMod+attack_bonus] to hit, 
+
+[damage_dice+damage_mod] ["%s damage"]
+[if(roll>=crit_low), CODE:{
+
+
+Crit chance! [1d20+attack_stat+BAB-SizeMod+attack_bonus] to confirm
+[crit_damage] extra damage
+};{ 
+}]
+'''
+
 base_macros = [
     Macro(label='Fortitude', group='saves', command='Fort: [d20+Fortitude]'),
     Macro(label='Reflex',  group='saves', command='Reflex: [d20+Reflex]'),
@@ -149,6 +175,8 @@ case 3: { [Nonlethal = Nonlethal + Amt] }]
 '''.strip()),
 ]
 
+
+
 properties_xml = '''<map>
   <entry>
     <string>version</string>
@@ -159,7 +187,7 @@ properties_xml = '''<map>
 
 with open('templates/content.xml') as f:
     content_template = jinja2.Template(f.read())
-#add a macro argument to the token
+# add a macro argument to the token
 class Token(object):
     def __init__(self, image, portrait_image=None, size='Medium',
                  states=None, properties=None, macros=None,
@@ -202,7 +230,10 @@ class Token(object):
         if default_macros:
             self.macros.extend(base_macros)
         if macros:
-            self.macros.extend(macros)
+            for macroTuple in macros:
+                macroString = (atk_macro % macroTuple)
+                thisMacro = Macro(label=macroTuple[0], group='Attacks',sortby='_1', command=macroString),
+                self.macros.extend(thisMacro)
 
     def _add_asset(self, f, asset):
         f.writestr('assets/{}'.format(asset.md5), asset.asset_xml())

@@ -113,6 +113,32 @@ class TokenMacros():
       print(secondMacro)
     except IndexError as e:
       pass
-    
-    
+  def returnMacros(self):
+    #gather all macro information and return it
+    allMacros = []
+    try:
+      name = self.AtkMacroName.get()
+      if(name != ''):
+        num = self.AtkNumEntry.get()
+        dice = self.DieNumEntry.get()
+        atkBon = self.AtkBonusEntry.get()
+        dmgBon = self.DmgBonusEntry.get()
+        dmgType = self.AtkMacroTypeName.get()
+        macro1 = (name,num,dice,atkBon,dmgBon,dmgType)
+        allMacros.append(macro1)
+    except Exception as e:
+      pass
+    try:
+      name = self.AtkMacroName2.get()
+      if(name != ''):
+        num = self.AtkNumEntry2.get()
+        dice = self.DieNumEntry2.get()
+        atkBon = self.AtkBonusEntry2.get()
+        dmgBon = self.DmgBonusEntry2.get()
+        dmgType = self.AtkMacroTypeName2.get()
+        macro2 = (name,dice,num,atkBon,dmgBon,dmgType)
+        allMacros.append(macro2)
+    except Exception as e:
+      pass
+    return allMacros
 
