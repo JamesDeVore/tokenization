@@ -4,7 +4,7 @@ A GUI based in tkinter that helps in the creation of MapTool tokens. Built on th
 https://github.com/dougalsutherland/tokenization
 
 ## How to use:
-
+### pip install -r requirements.txt
 ### with python shell, run main.py
 #### Or (if it works) run main.exe
 
