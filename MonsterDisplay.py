@@ -16,11 +16,17 @@ class MonsterDisplay():
     self.MonsterEntry = Entry(self.MonsterDisplay)
     self.MonsterEntry.grid(row=0, column=1)
 
-    self.MonsterDesc = Text(self.MonsterDisplay, height=10, width=60)
+    self.MonsterDesc = Text(self.MonsterDisplay, height=8, width=55)
     self.MonsterDesc.grid(row=1, column=0,columnspan=4)
 
+    self.Seperator = ttk.Separator(self.MonsterDisplay)
+    self.Seperator.grid(row=2, sticky='EW', columnspan=4,pady=8)
+
+    self.PropertyLabel = Label(self.MonsterDisplay,text="Properties",font=('Courier',16))
+    self.PropertyLabel.grid(row=2,column=1, sticky='NW',pady=4)
+
     self.MonsterStats = Frame(self.MonsterDisplay)
-    self.MonsterStats.grid(row=2, column=0,sticky='S',columnspan=4)
+    self.MonsterStats.grid(row=4, column=0,sticky='S',columnspan=4,pady=12)
 
     self.StrLabel = Label(self.MonsterStats, text="Strength")
     self.StrLabel.grid(row=0, column=0)
@@ -83,9 +89,9 @@ class MonsterDisplay():
     self.NaturalArmorBonusEntry.grid(row=3, column=5)
 
     self.SizeLabel = Label(self.MonsterStats, text="Size")
-    self.SizeLabel.grid(row=4, column=0)
+    self.SizeLabel.grid(row=5, column=0)
     self.SizeEntry = Entry(self.MonsterStats,width=10)
-    self.SizeEntry.grid(row=4, column=1)
+    self.SizeEntry.grid(row=5, column=1)
 
     self.FortLabel = Label(self.MonsterStats, text="Fortitude")
     self.FortLabel.grid(row=4, column=2)
@@ -98,9 +104,9 @@ class MonsterDisplay():
     self.WillEntry.grid(row=4, column=5)
 
     self.RefLabel = Label(self.MonsterStats, text="Reflex")
-    self.RefLabel.grid(row=5, column=0)
+    self.RefLabel.grid(row=4, column=0)
     self.RefEntry = Entry(self.MonsterStats,width=10)
-    self.RefEntry.grid(row=5, column=1)
+    self.RefEntry.grid(row=4, column=1)
 
     self.CMDLabel = Label(self.MonsterStats, text="CMD")
     self.CMDLabel.grid(row=5, column=2)
