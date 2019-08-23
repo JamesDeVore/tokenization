@@ -14,7 +14,7 @@ def makeToken(master,stats, macros, tokenInfo):
     try:
       imgFile = requests.get(tokenInfo['imgUrl']).content
     except Exception as e:
-      print("Img url did not return image correctly", e)
+      raise e
   elif(tokenInfo['imgPath'] != ""):
     correctedPath = tokenInfo['imgPath'].replace("/","\\")
     imgFile = io.open(correctedPath, mode='rb').read()

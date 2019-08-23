@@ -1,9 +1,12 @@
 
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
 import sys
 sys.path.insert(1,'/token_scripts')
 sys.path.insert(1,'/pythonScripts')
 from token_scripts import tokens
-from tkinter import *
+
 from search import SearchForMonsters
 from TokenPath import TokenPath
 from MonsterSelection import MonsterSelection
@@ -34,10 +37,13 @@ def selectMonster(evt):
 
 def createToken():
   #Need to gather all data in one dict for easy access
-  stats = monsterDisplay.returnStats()
-  tokenMacros = macros.returnMacros()
-  tokenInfo = tokenPath.returnTokenInformation()
-  makeToken(window,stats,tokenMacros,tokenInfo)
+  try:
+    stats = monsterDisplay.returnStats()
+    tokenMacros = macros.returnMacros()
+    tokenInfo = tokenPath.returnTokenInformation()
+    makeToken(window, stats, tokenMacros, tokenInfo)
+  except Exception as e:
+    messagebox.showerror("Error", e.args)
 
 window = Tk()
 
@@ -46,8 +52,7 @@ window.resizable(width=True, height=True)
 # window.geometry('700x500')
 title = Label(window, text="Monster Maker", font=('Courier', 24))
 title.grid(row=0, column=0, sticky='N')
-subtitle = Label(window, text=description, wraplength=200)
-subtitle.grid(row=1, column=0)
+
 SubmitButton = Button(window, text="Create Token!",height=5,width=15,font=('Courier',12),command=createToken)
 SubmitButton.grid(row=3,column=2, sticky='N')
 monsterBox = MonsterSelection(window)

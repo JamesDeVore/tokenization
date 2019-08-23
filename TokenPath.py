@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 
 
 class TokenPath():
@@ -45,12 +46,26 @@ class TokenPath():
     self.MonsterImgPathEntry.delete(0,END)
     self.MonsterImgPathEntry.insert(0,chosenFile.name)
   def returnTokenInformation(self):
-    return {
-        'fileName' : self.TokenName.get(),
-        'outputPath' : self.PathEntry.get(),
-        'imgUrl' : self.MonsterImgEntry.get(),
-        'imgPath' : self.MonsterImgPathEntry.get()
-    }
+    name = self.TokenName.get()
+    output = self.PathEntry.get()
+    imgURL = self.MonsterImgEntry.get()
+    imgPath = self.MonsterImgPathEntry.get()
+    errorString = ""
+    if(name == ""):
+      errorString += "Invalid file name \n"
+    if(output == ""):
+      errorString += "Invalid file path \n"
+    if(imgURL == "" and imgPath == ""):
+      errorString += "No image specified \n"
+    if(errorString != ""):
+      raise Exception(errorString)
+    else:
+      return  {
+          'fileName' : self.TokenName.get(),
+          'outputPath' : self.PathEntry.get(),
+          'imgUrl' : self.MonsterImgEntry.get(),
+          'imgPath' : self.MonsterImgPathEntry.get()
+      }
     
     
   
