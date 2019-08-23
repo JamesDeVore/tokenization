@@ -135,8 +135,9 @@ atk_macro = '''
 [h:roll=1d20]
 [h:crit_damage=reroll(crit_mult-1, dice+damage_mod, 1+damage_mod)]
 [Name]: [roll+attack_stat+BAB-SizeMod+attack_bonus] to hit, 
-
-[damage_dice+damage_mod] ["%s damage"]
+["&lt;br&gt;"]
+["&lt;br&gt;"]
+[damage_dice+damage_mod]     ["%s damage"]
 [if(roll>=crit_low), CODE:{
 
 
