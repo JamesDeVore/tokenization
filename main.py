@@ -42,9 +42,10 @@ def createToken():
     tokenMacros = macros.returnMacros()
     tokenInfo = tokenPath.returnTokenInformation()
     makeToken(window, stats, tokenMacros, tokenInfo)
+    messagebox.showinfo("Token created successfully!")
   except Exception as e:
     messagebox.showerror("Error", e.args)
-
+    
 window = Tk()
 
 window.title("Token Maker")

@@ -41,12 +41,12 @@ class TokenMacros():
       DieNumEntry = Entry(self.MacroFrame,width=5)
       DieNumEntry.grid(row=5 + (i * 4), column=3, sticky='W')
 
-      AtkBonusLabel = Label(self.MacroFrame, text="ATK Bonus")
-      AtkBonusLabel.grid(row=6 + (i * 4), column=0)
+      AtkBonusLabel = Label(self.MacroFrame, text="ATK Bonus (include +/-)")
+      AtkBonusLabel.grid(row=6 + (i * 4), column=0) 
       AtkBonusEntry = Entry(self.MacroFrame, width=5)
       AtkBonusEntry.grid(row=6 + (i * 4), column=1)
 
-      DmgBonusLabel = Label(self.MacroFrame, text="Damage Bonus")
+      DmgBonusLabel = Label(self.MacroFrame, text="Damage Bonus (include +/-)")
       DmgBonusLabel.grid(row=6 + (i * 4), column=2, sticky='W')
       DmgBonusEntry = Entry(self.MacroFrame, width=5)
       DmgBonusEntry.grid(row=6 + (i * 4), column=3, sticky='W')
@@ -56,8 +56,6 @@ class TokenMacros():
 
       self.Seperator2 = ttk.Separator(self.MacroFrame)
       self.Seperator2.grid(row=7 + (i * 4), sticky='EW', columnspan=4)
-    print(self.allData)
-
 
   def updateMacros(self,monsterObj):
     #first clear all fields
@@ -99,11 +97,10 @@ class TokenMacros():
         dieStep = DieNumEntry.get()
         atkBon = AtkBonusEntry.get()
         dmgBon = DmgBonusEntry.get()
-        assert(name != "")
         allMacros.append((name, dieNum, dieStep, atkBon, dmgBon,dmgType))
         return allMacros
     except Exception as e:
-      e = Exception("Macros require a name")
+      e = Exception("Something went wrong making the macros")
       raise e
     
     
