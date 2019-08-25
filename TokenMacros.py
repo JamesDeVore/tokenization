@@ -3,15 +3,15 @@ from tkinter import ttk
 
 
 macrodesc = '''
-Tokens come pre-loaded with the following macros: Fortitude save, Will Save, Reflex save, All ability checks, and modify HP. '''
+Tokens come pre-loaded with the following macros:\n\u2022Fortitude save\n\u2022Will Save\n\u2022Reflex save\n\u2022All ability checks\n\u2022Modify HP '''
 class TokenMacros():
   def __init__ (self,master):
 
     self.MacroFrame = Frame(master, padx=10, pady=10)
     self.MacroFrame.grid(row=2, column=2, columnspan=2, sticky='NE')
     self.MacroTitle = Label(master, text="Macro Details", font=('Courier', 18))
-    self.MacroTitle.grid(column=2, row=1, sticky='')
-    self.MacroDesc = Label(self.MacroFrame,text=macrodesc,wraplength=220,width=30)
+    self.MacroTitle.grid(column=2, row=1, columnspan=2, sticky='')
+    self.MacroDesc = Label(self.MacroFrame,text=macrodesc,wraplength=280,width=40)
     self.MacroDesc.grid(column=0, row=1, columnspan=4)
     self.ATKLabel = Label(self.MacroFrame,text="Attack Macro Details")
     self.ATKLabel.grid(column=0,row=2, columnspan=4)
@@ -20,7 +20,7 @@ class TokenMacros():
     self.allData = []
     
     for i in range(1,4):
-      
+      #only want 3 because of space reasons
       AtkMacroLabel = Label(self.MacroFrame, text="Name", )
       AtkMacroLabel.grid(column=0,row=4 + (i * 4))
       AtkMacroName = Entry(self.MacroFrame,)
@@ -60,10 +60,15 @@ class TokenMacros():
 
 
   def updateMacros(self,monsterObj):
+    #first clear all fields
+    for macro in self.allData:
+      for field in macro:
+        field.delete(0,END)
+        field.insert(0,"")
     incomingAtks = enumerate(monsterObj['MeleeAtks'])
     for enum,(name,atkBon,dmgBon,numDice,diceStep) in incomingAtks:
       macroTuple = self.allData[enum]
-      # AtkMacroName,AtkMacroTypeName,AtkNumEntry,DieNumEntry,AtkBonusEntry,DmgBonusEntry
+      # AtkMacroName,AtkMacroTypeName,AtkNumEntry,DieNumEntry,AtkBonusEntry,DmgBonusEntry = macroTuple order
       macroTuple[0].delete(0,END)
       macroTuple[0].insert(0,name) #name
 
@@ -84,18 +89,22 @@ class TokenMacros():
     
   def returnMacros(self):
     #gather all macro information and return it
-    allMacros = []
+    try:
+      allMacros = []
+      #may want to do some verification
+      for AtkMacroName, AtkMacroTypeName, AtkNumEntry, DieNumEntry, AtkBonusEntry, DmgBonusEntry in self.allData:
+        name = AtkMacroName.get()
+        dmgType = AtkMacroTypeName.get()
+        dieNum = AtkNumEntry.get()
+        dieStep = DieNumEntry.get()
+        atkBon = AtkBonusEntry.get()
+        dmgBon = DmgBonusEntry.get()
+        assert(name != "")
+        allMacros.append((name, dieNum, dieStep, atkBon, dmgBon,dmgType))
+        return allMacros
+    except Exception as e:
+      e = Exception("Macros require a name")
+      raise e
     
-    print(self.allData)
-    #may want to do some verification
-    for AtkMacroName, AtkMacroTypeName, AtkNumEntry, DieNumEntry, AtkBonusEntry, DmgBonusEntry in self.allData:
-      name = AtkMacroName.get()
-      dmgType = AtkMacroTypeName.get()
-      dieNum = AtkNumEntry.get()
-      dieStep = DieNumEntry.get()
-      atkBon = AtkBonusEntry.get()
-      dmgBon = DmgBonusEntry.get()
-      if name != "":
-        allMacros.append((name,dmgType,dieNum,dieStep,atkBon,dmgBon))
-    return allMacros
+    
 
