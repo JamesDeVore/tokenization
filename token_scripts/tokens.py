@@ -159,7 +159,7 @@ base_macros = [
     Macro(label='cha', group='skills', sortby='_6', command='Cha: [d20+ChaMod]'),
     Macro(label='Perception', group='skills', command='Perception: [d20+Perception]'),
     Macro(label='Sense Motive', group='skills', command='Sense Motive: [d20+SenseMotive]'),
-    Macro(label='Mod HP', color='pink', sortby='0', command='''
+    Macro(label='Mod HP', sortby='0', command='''
 [h: input(
 "mode|Damage,Heal,Temp HP,Nonlethal|Choose|RADIO|ORIENT=H",
 "Amt|0|Amount|TEXT"

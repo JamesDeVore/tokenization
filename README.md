@@ -12,5 +12,5 @@ There is a monster search feature that will automatically *try* to fill in most 
 
 ### Related API:
 Monster api : https://vxe45sf1th.execute-api.us-east-1.amazonaws.com/1/main?name=ogre - search by name
-Spells api: : https://vxe45sf1th.execute-api.us-east-1.amazonaws.com/1/spells?name=invisibility - search by name as well
+Spells api: : https://vxe45sf1th.execute-api.us-east-1.amazonaws.com/1/spells?name=invisibility - search by name as well (token maker doesn't use this yet.)
 
