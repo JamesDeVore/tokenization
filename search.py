@@ -39,9 +39,14 @@ def SearchForMonsters(name):
         meleeAtks = result['Melee'].split(',')
         result['MeleeAtks'] = []
         for atk in meleeAtks:
+          
           name = re.search(weaponNameReg,atk)[0]
           bonuses = re.findall(wepBonusReg, atk)
-          XdY = re.search(diceReg, atk)[0].split('d')
+          try:
+            XdY = re.search(diceReg, atk)[0].split('d')
+          except Exception as e:
+            XdY = [0,0]
+          
           try:
             atk = bonuses[0]
           except IndexError as e:
